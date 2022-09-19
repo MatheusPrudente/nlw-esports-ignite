@@ -10,6 +10,10 @@ import {
 
 import { Routes } from "./src/routes";
 import { Loading } from "./src/components/Loading";
+import "./src/services/notificationConfig";
+import { getPushNotificationToken } from "./src/services/getPushNotificationToken";
+import { useRef, useEffect } from 'react';
+import { Subscription } from 'expo-mpdules-core'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -17,6 +21,30 @@ export default function App() {
     Inter_600SemiBold,
     Inter_700Bold,
     Inter_900Black,
+  });
+
+  const getPushNotificationListener = useRef<Subscription>();
+  const responsePushNotificationListener = useRef<Subscription>();
+
+  useEffect(() => {
+    getPushNotificationToken();
+  });
+
+  useEffect(() => {
+    getPushNotificationListener.current = Notification.addNotificationReceivedListener(notification => {
+
+    });
+
+    responsePushNotificationListener.current = Notification.addResponseReceivedListener(response => {
+
+    });
+
+    return () => {
+      if(getPushNotificationListener.current && responsePushNotificationListener.current) {
+        Notification.removeNotificationSubscription(getPushNotificationListener.current);
+        Notification.removeNotificationSubscription(responsePushNotificationListener.current);
+      }
+    }
   });
 
   return (
