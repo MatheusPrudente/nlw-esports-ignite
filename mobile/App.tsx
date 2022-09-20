@@ -13,7 +13,8 @@ import { Loading } from "./src/components/Loading";
 import "./src/services/notificationConfig";
 import { getPushNotificationToken } from "./src/services/getPushNotificationToken";
 import { useRef, useEffect } from 'react';
-import { Subscription } from 'expo-mpdules-core'
+import { Subscription } from "expo-modules-core";
+import * as Notification from "expo-notifications";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,18 +27,14 @@ export default function App() {
   const getPushNotificationListener = useRef<Subscription>();
   const responsePushNotificationListener = useRef<Subscription>();
 
-  useEffect(() => {
+  /*useEffect(() => {
     getPushNotificationToken();
-  });
+  });*/
 
-  useEffect(() => {
-    getPushNotificationListener.current = Notification.addNotificationReceivedListener(notification => {
+  /*useEffect(() => {
+    getPushNotificationListener.current = Notification.addNotificationReceivedListener((notification) => {});
 
-    });
-
-    responsePushNotificationListener.current = Notification.addResponseReceivedListener(response => {
-
-    });
+    responsePushNotificationListener.current = Notification.addNotificationResponseReceivedListener((response) => {});
 
     return () => {
       if(getPushNotificationListener.current && responsePushNotificationListener.current) {
@@ -45,7 +42,7 @@ export default function App() {
         Notification.removeNotificationSubscription(responsePushNotificationListener.current);
       }
     }
-  });
+  });*/
 
   return (
     <Background>

@@ -1,5 +1,4 @@
-import { SafeAreaView } from 'react-native';
-import { Background } from "./src/components/Background";
+import { FlatList, Image, SafeAreaView, Text } from 'react-native';
 import { useRoute} from '@react-navigation/native';
 import { View, TouchableOpacity } from "react-native";
 
@@ -7,12 +6,13 @@ import { styles } from './styles';
 import { GameParams } from '../../@types/navigation';
 import { Entypo } from '@expo/vector-icons';
 import { THEME } from '../../theme';
-import logoImg from '../../assets/games/logo-nlw-esports.png'
+import logoImg from '../../assets/logo-nlw-esports.png'
 import { Heading } from '../../components/Heading';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native';
 import { DuoCard, DuoCardProps } from '../../components/DuoCard';
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import { DuoMatch } from '../../components/DuoMatch';
+import { Background } from '../../components/Background';
 
 export function Game() {
   const route = useRoute();
@@ -29,7 +29,7 @@ export function Game() {
     await fetch(`http://192.168.0.111:3333/ads/${adsId}/discord`)
     .then((response) => response.json())
     .then((data) => {
-      setDiscordDuoSelected(data);
+      setDiscordDuoSelected(data.discord);
     });
   }
 
@@ -62,7 +62,7 @@ export function Game() {
 
         <Image
           source={{ uri : game.bannerUrl }}
-          styles={styles.cover}
+          style={styles.cover}
           resizeMode="cover"
         />
         <Heading
@@ -71,20 +71,14 @@ export function Game() {
         />
         <FlatList
           data={duos}
-          keyExtractor = {(item) => item.id}
-          renderItem = {({ item }) =>
-            <DuoCard
-              data={item}
-              onConnect={() => { getDiscordUser(item.id) }}
-            />
-          />
-          }
+          keyExtractor={(item) => item.id}
+          renderItem={({item}) => <DuoCard data={item} onConnect={()=>{ getDiscordUser(item.id) }}/>}
           horizontal
           showsHorizontalScrollIndicator={false}
-          styles={styles.containerList}
+          style={styles.containerList}
           contentContainerStyle={[duos.length > 0 ? styles.contentList : styles.emptyListContent ]}
           ListEmptyComponent={() => (
-            <Text styel={styles.emptyListText}>
+            <Text style={styles.emptyListText}>
               Não há anuncios publicados ainda
             </Text>
           )}
