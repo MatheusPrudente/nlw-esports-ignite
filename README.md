@@ -54,7 +54,8 @@ o parceiro perfeito para jogar seu jogo favorito juntos.
 - [ ] Utilizar o select do radix
 - [ ] Tornar a aplicação web responsiva
 - [ ] Utilizar o keen-slider para montar o carrousel de games
-- [ ] Utilizar o hook form para validar os forms de entrada
+- [ ] Utilizar o hook form para validar os forms de entrada (Web)
+- [ ] Utilizar o Zod para validar os forms de entrada (Server)
 - [ ] Incluir a autenticação via Discord
 - [ ] Incluir notificações personalizadas
 
