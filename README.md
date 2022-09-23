@@ -31,21 +31,32 @@ o parceiro perfeito para jogar seu jogo favorito juntos.
 ## :pushpin: Quickstart
 
 ### Server
-```
-  $ npm install
-  $ npm run db:migrate
+```bash
+  # instalar as dependencias
+  npm install
+  
+  # inicializar o banco
+  npm run db:migrate
+  
+  # rodar o projeto
   $ npm run dev
 ```
 
 ### Web
-```
+```bash
+  # instalar as dependencias
   $ npm install
+  
+  # rodar o projeto
   $ npm run dev
 ```
 
 ### Mobile
-```
+```bash
+  # instalar as dependencias
   $ expo install
+  
+  # rodar o projeto
   $ expo start 
 ```
 
@@ -58,4 +69,4 @@ o parceiro perfeito para jogar seu jogo favorito juntos.
 - [ ] Utilizar o Zod para validar os forms de entrada (Server)
 - [ ] Incluir a autenticação via Discord
 - [ ] Incluir notificações personalizadas
-
+- [ ] Incluir modal de anúncios na web
