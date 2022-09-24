@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import * as Dialog from '@radix-ui/react-dialog';
 import { CreateAdModal } from "./components/CreateAdModal";
 import axios from "axios";
+import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
 
 interface Game {
   id: string;
@@ -18,12 +20,36 @@ interface Game {
 
 function App() {
   const [games, setGames] = useState<Game[]>([]);
+  const [sliderRef] = useKeenSlider({
+    loop: true,
+    breakpoints: {
+      "(min-width: 200px)": {
+        slides: { perView: 2.2, spacing: 5 },
+      },
+      "(min-width: 400px)": {
+        slides: { perView: 2.5, spacing: 5 },
+      },
+      "(min-width: 600px)": {
+        slides: { perView: 3.5, spacing: 5 },
+      },
+      "(min-width: 800px)": {
+        slides: { perView: 4.5, spacing: 5 },
+      },
+      "(min-width: 1000px)": {
+        slides: { perView: 5.5, spacing: 10 },
+      },
+      "(min-width: 1200px)": {
+        slides: { perView: 6.5, spacing: 10 },
+      },
+    },
+    mode: "free",
+    slides: { origin: "center", perView: 5.5, spacing: 10 },
+  });
 
   useEffect(() => {
-    axios("http://localhost:3333/games")
-      .then((response) => {
-        setGames(response.data);
-      });
+    axios("http://localhost:3333/games").then((response) => {
+      setGames(response.data);
+    });
   }, []);
 
   return (
@@ -36,10 +62,11 @@ function App() {
         </span>{" "}
         está aqui.
       </h1>
-      <div className="grid grid-cols-6 gap-6 mt-16">
+      <div ref={sliderRef} className="keen-slider mt-16">
         {games.map((game) => {
           return (
             <GameBanner
+              className="keen-slider__slide"
               key={game.id}
               bannerUrl={game.bannerUrl}
               title={game.title}
