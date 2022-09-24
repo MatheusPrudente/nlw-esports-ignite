@@ -33,10 +33,10 @@ o parceiro perfeito para jogar seu jogo favorito juntos.
 ### Server
 ```bash
   # instalar as dependencias
-  npm install
+  $ npm install
   
   # inicializar o banco
-  npm run db:migrate
+  $ npm run db:migrate
   
   # rodar o projeto
   $ npm run dev
