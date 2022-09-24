@@ -66,11 +66,15 @@ function App() {
         {games.map((game) => {
           return (
             <GameBanner
-              className="keen-slider__slide"
               key={game.id}
-              bannerUrl={game.bannerUrl}
-              title={game.title}
-              adsCount={game._count.ads}
+              game={{
+                bannerUrl: game.bannerUrl,
+                title: game.title,
+                adsCount: game._count.ads,
+              }}
+              setting={{
+                className: "keen-slider__slide",
+              }}
             />
           );
         })}

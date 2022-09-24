@@ -5,6 +5,7 @@ import { Input } from "./Form/input";
 import { useEffect, useState, FormEvent } from "react";
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import axios from "axios";
+import { Select } from "./Form/Select";
 
 interface Game {
   id: string;
